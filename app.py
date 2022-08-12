@@ -17,6 +17,12 @@ from forms import *
 #----------------------------------------------------------------------------#
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:Abu195@localhost:5432/mabase3'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+#migrate = Migrate(app, db)
+
 moment = Moment(app)
 app.config.from_object('config')
 db = SQLAlchemy(app)
@@ -38,6 +44,12 @@ class Venue(db.Model):
     phone = db.Column(db.String(120))
     image_link = db.Column(db.String(500))
     facebook_link = db.Column(db.String(120))
+    website = db.Column(db.String(120), nullable=False)
+    shows = db.relationship('Show', backref='venue', lazy=False)
+  
+    def __repr__(self):
+             return f'<Venue: {self.id}, name: {self.name}, city: {self.city}, state: {self.state}, address: {self.address}, phone: {self.phone}, image_link: {self.image_link}, facebook_link: {self.facebook_link}, genres: {self.genres}, website: {self.website}, shows: {self.shows}>'
+  
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
