@@ -1,9 +1,9 @@
 import os
-import os
 from flask import Flask, render_template, request, Response, flash, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy 
 from flask_wtf.csrf import CSRFProtect
-#rom flask_migrate import Migrate
+
+# rom flask_migrate import Migrate
 
 app = Flask(__name__)
 csrf = CSRFProtect(app)
@@ -19,4 +19,4 @@ DEBUG = True
 
 
 # TODO IMPLEMENT DATABASE URL
-SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:Abu195@localhost:5432/mabase3'
+SQLALCHEMY_DATABASE_URI = "postgresql://postgres:Abu195@localhost:5432/mabase3"
