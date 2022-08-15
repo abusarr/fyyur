@@ -3,7 +3,7 @@ import json
 import babel
 from flask import Flask, render_template, request, Response, flash, redirect, url_for, abort, jsonify
 #from flask_moment import Moment
-from flask_sqlalchemy import SQLAlchemy, date 
+from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
 from flask_wtf import Form
@@ -23,6 +23,9 @@ app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:Abu195@localhost:54
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
+app.config.from_object("config")
+date = SQLAlchemy(app)
 
 
 #----------------------------------------------------------------------------#
@@ -182,332 +185,332 @@ def show_venue(venue_id):
 #  Create Venue
 #  ----------------------------------------------------------------
 
-@app.route('/venues/create', methods=['GET'])
-def create_venue_form():
-  app = Flask(__name__)
-  csrf.init_app(app)
-  form = VenueForm()
-  return render_template('forms/new_venue.html', form=form)
+# @app.route('/venues/create', methods=['GET'])
+# def create_venue_form():
+#   app = Flask(__name__)
+#   csrf.init_app(app)
+#   form = VenueForm()
+#   return render_template('forms/new_venue.html', form=form)
 
-@app.route('/venues/create', methods=['POST'])
-def create_venue_submission():
-  app = Flask(__name__)
-  csrf.init_app(app)
-  error = False
-  body = {}
-  request_data = request.get_json()
-  try:
-    name = request_data['name']
-    city = request_data['city']
-    state = request_data['state']
-    phone = request_data['phone']
-    address = request_data['address']
-    genres = json.dumps(request_data['genres'])
-    facebook_link = request_data['facebook_link']
-    image_link = request_data['image_link']
-    website = request_data['website']
+# @app.route('/venues/create', methods=['POST'])
+# def create_venue_submission():
+#   app = Flask(__name__)
+#   csrf.init_app(app)
+#   error = False
+#   body = {}
+#   request_data = request.get_json()
+#   try:
+#     name = request_data['name']
+#     city = request_data['city']
+#     state = request_data['state']
+#     phone = request_data['phone']
+#     address = request_data['address']
+#     genres = json.dumps(request_data['genres'])
+#     facebook_link = request_data['facebook_link']
+#     image_link = request_data['image_link']
+#     website = request_data['website']
     
-    venue = Venue(name=name, city=city, state=state, phone=phone, address=address, genres=genres, facebook_link=facebook_link, image_link=image_link, website=website)
-    db.session.add(venue)
-    db.session.commit()
-  except:
-    db.session.rollback()
-    error = True
-    print(sys.exc_info())
-  finally:
-    db.session.close()
+#     venue = Venue(name=name, city=city, state=state, phone=phone, address=address, genres=genres, facebook_link=facebook_link, image_link=image_link, website=website)
+#     db.session.add(venue)
+#     db.session.commit()
+#   except:
+#     db.session.rollback()
+#     error = True
+#     print(sys.exc_info())
+#   finally:
+#     db.session.close()
   
-  if error:
-    abort(500)
-    body['success'] = False
-    body['msg'] = 'Buhhhh we were an error '
-  else:
-    body['msg'] = 'Wohoo that create was sucessfully'
-    body['success'] = True
+#   if error:
+#     abort(500)
+#     body['success'] = False
+#     body['msg'] = 'Buhhhh we were an error '
+#   else:
+#     body['msg'] = 'Wohoo that create was sucessfully'
+#     body['success'] = True
      
-  return jsonify(body)
+#   return jsonify(body)
 
-@app.route('/venues/<venue_id>', methods=['DELETE'])
-def delete_venue(venue_id):
-  # TODO: Complete this endpoint for taking a venue_id, and using
-  # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
+# @app.route('/venues/<venue_id>', methods=['DELETE'])
+# def delete_venue(venue_id):
+#   # TODO: Complete this endpoint for taking a venue_id, and using
+#   # SQLAlchemy ORM to delete a record. Handle cases where the session commit could fail.
 
-  # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
-  # clicking that button delete it from the db then redirect the user to the homepage
-  return None
+#   # BONUS CHALLENGE: Implement a button to delete a Venue on a Venue Page, have it so that
+#   # clicking that button delete it from the db then redirect the user to the homepage
+#   return None
 
-#  Artists
-#  ----------------------------------------------------------------
-@app.route('/artists')
-def artists():
-  data = Artist.query.order_by('name').all()
-  return render_template('pages/artists.html', artists=data)
+# #  Artists
+# #  ----------------------------------------------------------------
+# @app.route('/artists')
+# def artists():
+#   data = Artist.query.order_by('name').all()
+#   return render_template('pages/artists.html', artists=data)
 
-@app.route('/artists/search', methods=['POST'])
-def search_artists():
-  search_term = request.form.get('search_term')
-  search = "%{}%".format(search_term.replace(" ", "\ "))
-  data = Artist.query.filter(Artist.name.match(search)).order_by('name').all()
-  items = []
-  for row in data:
-    aux = {
-      "id": row.id,
-      "name": row.name,
-      "num_upcoming_shows": len(row.shows)
-    }
-    items.append(aux)
-  response={
-    "count": len(items),
-    "data": items
-  }
-  return render_template('pages/search_artists.html', results=response, search_term=request.form.get('search_term', ''))
+# @app.route('/artists/search', methods=['POST'])
+# def search_artists():
+#   search_term = request.form.get('search_term')
+#   search = "%{}%".format(search_term.replace(" ", "\ "))
+#   data = Artist.query.filter(Artist.name.match(search)).order_by('name').all()
+#   items = []
+#   for row in data:
+#     aux = {
+#       "id": row.id,
+#       "name": row.name,
+#       "num_upcoming_shows": len(row.shows)
+#     }
+#     items.append(aux)
+#   response={
+#     "count": len(items),
+#     "data": items
+#   }
+#   return render_template('pages/search_artists.html', results=response, search_term=request.form.get('search_term', ''))
 
-@app.route('/artists/<int:artist_id>')
-def show_artist(artist_id):
-  data = Artist.query.filter_by(id=artist_id).first()
-  data.genres = json.loads(data.genres)
+# @app.route('/artists/<int:artist_id>')
+# def show_artist(artist_id):
+#   data = Artist.query.filter_by(id=artist_id).first()
+#   data.genres = json.loads(data.genres)
 
-  upcoming_shows = []
-  past_shows = []
-  for show in data.shows:
-    if show.date > datetime.now():
-      upcoming_shows.append(show)
-    else:
-      past_shows.append(show)
-  data.upcoming_shows = upcoming_shows
-  data.past_shows = past_shows
+#   upcoming_shows = []
+#   past_shows = []
+#   for show in data.shows:
+#     if show.date > datetime.now():
+#       upcoming_shows.append(show)
+#     else:
+#       past_shows.append(show)
+#   data.upcoming_shows = upcoming_shows
+#   data.past_shows = past_shows
 
-  return render_template('pages/show_artist.html', artist=data)
+#   return render_template('pages/show_artist.html', artist=data)
 
-#  Update
-#  ----------------------------------------------------------------
-@app.route('/artists/<int:artist_id>/edit', methods=['GET'])
-def edit_artist(artist_id):
-  form = ArtistForm()
-  artist = Artist.query.filter_by(id=artist_id).first()
+# #  Update
+# #  ----------------------------------------------------------------
+# @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
+# def edit_artist(artist_id):
+#   form = ArtistForm()
+#   artist = Artist.query.filter_by(id=artist_id).first()
 
-  form.name.data = artist.name
-  form.city.data = artist.city
-  form.state.data = artist.state
-  form.phone.data = artist.phone
-  form.facebook_link.data = artist.facebook_link
-  form.website.data = artist.website
-  form.image_link.data = artist.image_link
-  form.genres.data = json.loads(artist.genres)
+#   form.name.data = artist.name
+#   form.city.data = artist.city
+#   form.state.data = artist.state
+#   form.phone.data = artist.phone
+#   form.facebook_link.data = artist.facebook_link
+#   form.website.data = artist.website
+#   form.image_link.data = artist.image_link
+#   form.genres.data = json.loads(artist.genres)
   
-  return render_template('forms/edit_artist.html', form=form, artist=artist)
+#   return render_template('forms/edit_artist.html', form=form, artist=artist)
 
-@app.route('/artists/<int:artist_id>/edit', methods=['POST'])
-def edit_artist_submission(artist_id):
-  app = Flask(__name__)
-  csrf.init_app(app)
-  error = False
-  body = {}
-  request_data = request.get_json()
-  try:
-    artist = Artist.query.filter_by(id=artist_id).first()
-    artist.name = request_data['name']
-    artist.city = request_data['city']
-    artist.state = request_data['state']
-    artist.phone = request_data['phone']
-    artist.genres = json.dumps(request_data['genres'])
-    artist.facebook_link = request_data['facebook_link']
-    artist.website = request_data['website']
-    artist.image_link = request_data['image_link']
+# @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
+# def edit_artist_submission(artist_id):
+#   app = Flask(__name__)
+#   csrf.init_app(app)
+#   error = False
+#   body = {}
+#   request_data = request.get_json()
+#   try:
+#     artist = Artist.query.filter_by(id=artist_id).first()
+#     artist.name = request_data['name']
+#     artist.city = request_data['city']
+#     artist.state = request_data['state']
+#     artist.phone = request_data['phone']
+#     artist.genres = json.dumps(request_data['genres'])
+#     artist.facebook_link = request_data['facebook_link']
+#     artist.website = request_data['website']
+#     artist.image_link = request_data['image_link']
     
-    db.session.add(artist)
-    db.session.commit()
-  except:
-    db.session.rollback()
-    error = True
-    print(sys.exc_info())
-  finally:
-    db.session.close()
-  if error:
-    abort(500)
-    body['success'] = False
-    body['msg'] = 'Buhhhh we were an error '
-  else:
-    body['msg'] = 'Wohoo that create was sucessfully'
-    body['success'] = True
+#     db.session.add(artist)
+#     db.session.commit()
+#   except:
+#     db.session.rollback()
+#     error = True
+#     print(sys.exc_info())
+#   finally:
+#     db.session.close()
+#   if error:
+#     abort(500)
+#     body['success'] = False
+#     body['msg'] = 'Buhhhh we were an error '
+#   else:
+#     body['msg'] = 'Wohoo that create was sucessfully'
+#     body['success'] = True
 
-  return jsonify(body)
+#   return jsonify(body)
 
-@app.route('/venues/<int:venue_id>/edit', methods=['GET'])
-def edit_venue(venue_id):
-  form = VenueForm()
-  venue = Venue.query.filter_by(id=venue_id).first()
+# @app.route('/venues/<int:venue_id>/edit', methods=['GET'])
+# def edit_venue(venue_id):
+#   form = VenueForm()
+#   venue = Venue.query.filter_by(id=venue_id).first()
 
-  form.name.data = venue.name
-  form.city.data = venue.city
-  form.state.data = venue.state
-  form.phone.data = venue.phone
-  form.address.data = venue.address
-  form.facebook_link.data = venue.facebook_link
-  form.website.data = venue.website
-  form.image_link.data = venue.image_link
-  form.genres.data = json.loads(venue.genres)
+#   form.name.data = venue.name
+#   form.city.data = venue.city
+#   form.state.data = venue.state
+#   form.phone.data = venue.phone
+#   form.address.data = venue.address
+#   form.facebook_link.data = venue.facebook_link
+#   form.website.data = venue.website
+#   form.image_link.data = venue.image_link
+#   form.genres.data = json.loads(venue.genres)
   
-  return render_template('forms/edit_venue.html', form=form, venue=venue)
+#   return render_template('forms/edit_venue.html', form=form, venue=venue)
 
-@app.route('/venues/<int:venue_id>/edit', methods=['POST'])
-def edit_venue_submission(venue_id):
-  app = Flask(__name__)
-  csrf.init_app(app)
-  error = False
-  body = {}
-  request_data = request.get_json()
+# @app.route('/venues/<int:venue_id>/edit', methods=['POST'])
+# def edit_venue_submission(venue_id):
+#   app = Flask(__name__)
+#   csrf.init_app(app)
+#   error = False
+#   body = {}
+#   request_data = request.get_json()
 
-  try:
-    venue = Venue.query.filter_by(id=venue_id).first()
-    venue.name = request_data['name']
-    venue.city = request_data['city']
-    venue.state = request_data['state']
-    venue.phone = request_data['phone']
-    venue.address = request_data['address']
-    venue.genres = json.dumps(request_data['genres'])
-    venue.facebook_link = request_data['facebook_link']
-    venue.website = request_data['website']
-    venue.image_link = request_data['image_link']
+#   try:
+#     venue = Venue.query.filter_by(id=venue_id).first()
+#     venue.name = request_data['name']
+#     venue.city = request_data['city']
+#     venue.state = request_data['state']
+#     venue.phone = request_data['phone']
+#     venue.address = request_data['address']
+#     venue.genres = json.dumps(request_data['genres'])
+#     venue.facebook_link = request_data['facebook_link']
+#     venue.website = request_data['website']
+#     venue.image_link = request_data['image_link']
 
-    db.session.add(venue)
-    db.session.commit()
-  except:
-    db.session.rollback()
-    error = True
-    print(sys.exc_info())
-  finally:
-    db.session.close()
-  if error:
-    abort(500)
-    body['success'] = False
-    body['msg'] = 'Buhhhh we were an error '
-  else:
-    body['msg'] = 'Wohoo that create was sucessfully'
-    body['success'] = True
+#     db.session.add(venue)
+#     db.session.commit()
+#   except:
+#     db.session.rollback()
+#     error = True
+#     print(sys.exc_info())
+#   finally:
+#     db.session.close()
+#   if error:
+#     abort(500)
+#     body['success'] = False
+#     body['msg'] = 'Buhhhh we were an error '
+#   else:
+#     body['msg'] = 'Wohoo that create was sucessfully'
+#     body['success'] = True
   
-  return jsonify(body)
+#   return jsonify(body)
 
-#  Create Artist
-#  ----------------------------------------------------------------
+# #  Create Artist
+# #  ----------------------------------------------------------------
 
-@app.route('/artists/create', methods=['GET'])
-def create_artist_form():
-  app = Flask(__name__)
-  csrf.init_app(app)
-  form = ArtistForm()
-  return render_template('forms/new_artist.html', form=form)
+# @app.route('/artists/create', methods=['GET'])
+# def create_artist_form():
+#   app = Flask(__name__)
+#   csrf.init_app(app)
+#   form = ArtistForm()
+#   return render_template('forms/new_artist.html', form=form)
 
-@app.route('/artists/create', methods=['POST'])
-def create_artist_submission():
-  app = Flask(__name__)
-  csrf.init_app(app)
-  error = False
-  body = {}
-  request_data = request.get_json()
-  try:
-    name = request_data['name']
-    city = request_data['city']
-    state = request_data['state']
-    phone = request_data['phone']
-    genres = json.dumps(request_data['genres'])
-    facebook_link = request_data['facebook_link']
-    website = request_data['website']
-    image_link = request_data['image_link']
+# @app.route('/artists/create', methods=['POST'])
+# def create_artist_submission():
+#   app = Flask(__name__)
+#   csrf.init_app(app)
+#   error = False
+#   body = {}
+#   request_data = request.get_json()
+#   try:
+#     name = request_data['name']
+#     city = request_data['city']
+#     state = request_data['state']
+#     phone = request_data['phone']
+#     genres = json.dumps(request_data['genres'])
+#     facebook_link = request_data['facebook_link']
+#     website = request_data['website']
+#     image_link = request_data['image_link']
     
-    artist = Artist(name=name, city=city, state=state, phone=phone, genres=genres, facebook_link=facebook_link, image_link=image_link, website=website)
-    db.session.add(artist)
-    db.session.commit()
-  except:
-    db.session.rollback()
-    error = True
-    print(sys.exc_info())
-  finally:
-    db.session.close()
-  if error:
-    abort(500)
-    body['success'] = False
-    body['msg'] = 'Buhhhh we were an error '
-  else:
-    body['msg'] = 'Wohoo that create was sucessfully'
-    body['success'] = True
+#     artist = Artist(name=name, city=city, state=state, phone=phone, genres=genres, facebook_link=facebook_link, image_link=image_link, website=website)
+#     db.session.add(artist)
+#     db.session.commit()
+#   except:
+#     db.session.rollback()
+#     error = True
+#     print(sys.exc_info())
+#   finally:
+#     db.session.close()
+#   if error:
+#     abort(500)
+#     body['success'] = False
+#     body['msg'] = 'Buhhhh we were an error '
+#   else:
+#     body['msg'] = 'Wohoo that create was sucessfully'
+#     body['success'] = True
 
-  return jsonify(body)
+#   return jsonify(body)
 
-#  Shows
-#  ----------------------------------------------------------------
+# #  Shows
+# #  ----------------------------------------------------------------
 
-@app.route('/shows')
-def shows():
-  rows = db.session.query(Show, Artist, Venue).join(Artist).join(Venue).filter(Show.date > datetime.now()).order_by('date').all()
-  data = []
-  for row in rows:
-    item = {
-      'venue_id': row.Venue.id,
-      'artist_id': row.Artist.id,
-      'venue_name': row.Venue.name,
-      'artist_name': row.Artist.name,
-      'artist_image_link': row.Artist.image_link,
-      'start_time': row.Show.date.strftime('%Y-%m-%d %H:%I')
-    }
-    data.append(item)
+# @app.route('/shows')
+# def shows():
+#   rows = db.session.query(Show, Artist, Venue).join(Artist).join(Venue).filter(Show.date > datetime.now()).order_by('date').all()
+#   data = []
+#   for row in rows:
+#     item = {
+#       'venue_id': row.Venue.id,
+#       'artist_id': row.Artist.id,
+#       'venue_name': row.Venue.name,
+#       'artist_name': row.Artist.name,
+#       'artist_image_link': row.Artist.image_link,
+#       'start_time': row.Show.date.strftime('%Y-%m-%d %H:%I')
+#     }
+#     data.append(item)
   
-  return render_template('pages/shows.html', shows=data)
+#   return render_template('pages/shows.html', shows=data)
 
-@app.route('/shows/create')
-def create_shows():
-  form = ShowForm()
-  return render_template('forms/new_show.html', form=form)
+# @app.route('/shows/create')
+# def create_shows():
+#   form = ShowForm()
+#   return render_template('forms/new_show.html', form=form)
 
-@app.route('/shows/create', methods=['POST'])
-def create_show_submission():
-  app = Flask(__name__)
-  csrf.init_app(app)
-  error = False
-  body = {}
-  request_data = request.get_json()
-  try:
-    artist_id = request_data['artist_id']
-    venue_id = request_data['venue_id']
-    start_time = request_data['start_time']
+# @app.route('/shows/create', methods=['POST'])
+# def create_show_submission():
+#   app = Flask(__name__)
+#   csrf.init_app(app)
+#   error = False
+#   body = {}
+#   request_data = request.get_json()
+#   try:
+#     artist_id = request_data['artist_id']
+#     venue_id = request_data['venue_id']
+#     start_time = request_data['start_time']
 
-    show = Show(artist_id=artist_id, venue_id=venue_id, date=start_time)
-    db.session.add(show)
-    db.session.commit()
-  except:
-    db.session.rollback()
-    error = True
-    print(sys.exc_info())
-  finally:
-    db.session.close()
-  if error:
-    abort(500)
-    body['success'] = False
-    body['msg'] = 'Buhhhh we were an error '
-  else:
-    body['msg'] = 'Wohoo that create was sucessfully'
-    body['success'] = True
+#     show = Show(artist_id=artist_id, venue_id=venue_id, date=start_time)
+#     db.session.add(show)
+#     db.session.commit()
+#   except:
+#     db.session.rollback()
+#     error = True
+#     print(sys.exc_info())
+#   finally:
+#     db.session.close()
+#   if error:
+#     abort(500)
+#     body['success'] = False
+#     body['msg'] = 'Buhhhh we were an error '
+#   else:
+#     body['msg'] = 'Wohoo that create was sucessfully'
+#     body['success'] = True
 
-  return jsonify(body)
+#   return jsonify(body)
 
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template('errors/404.html'), 404
+# @app.errorhandler(404)
+# def not_found_error(error):
+#     return render_template('errors/404.html'), 404
 
-@app.errorhandler(500)
-def server_error(error):
-    return render_template('errors/500.html'), 500
+# @app.errorhandler(500)
+# def server_error(error):
+#     return render_template('errors/500.html'), 500
 
 
-if not app.debug:
-    file_handler = FileHandler('error.log')
-    file_handler.setFormatter(
-        Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
-    )
-    app.logger.setLevel(logging.INFO)
-    file_handler.setLevel(logging.INFO)
-    app.logger.addHandler(file_handler)
-    app.logger.info('errors')
+# if not app.debug:
+#     file_handler = FileHandler('error.log')
+#     file_handler.setFormatter(
+#         Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]')
+#     )
+#     app.logger.setLevel(logging.INFO)
+#     file_handler.setLevel(logging.INFO)
+#     app.logger.addHandler(file_handler)
+#     app.logger.info('errors')
 
 #----------------------------------------------------------------------------#
 # Launch.
