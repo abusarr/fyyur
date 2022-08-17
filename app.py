@@ -12,10 +12,10 @@ from flask import Flask, render_template, request, Response, flash, redirect, ur
 from flask_sqlalchemy import SQLAlchemy
 import logging
 from logging import Formatter, FileHandler
-from config import csrf
+#from config import csrf
 from wtforms.csrf.core import CSRF
 from flask_wtf import Form
-from forms import *
+#from forms import *
 import sys 
 
 # ----------------------------------------------------------------------------#
@@ -23,16 +23,14 @@ import sys
 # ----------------------------------------------------------------------------#
 
 app = Flask(__name__)
-app.config[
-    "SQLALCHEMY_DATABASE_URI"
-] = "postgresql://postgres:Abu195@localhost:5432/fyyur"
+SQLALCHEMY_DATABASE_URI = "postgresql://postgres:Abu195@localhost:5432/fyyur"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 # migrate = Migrate(app, db)
 
 # moment = Moment(app)
-app.config.from_object("config")
+#app.config.from_object("config")
 date = SQLAlchemy(app)
 
 # Enable debug mode.
@@ -69,8 +67,6 @@ def index():
 #  Venues
 #  ----------------------------------------------------------------
 
-#  Venues
-#  ----------------------------------------------------------------
 
 @app.route('/venues')
 def venues():
@@ -203,11 +199,11 @@ def show_venue(venue_id):
 
 @app.route('/venues/create', methods=['GET'])
 def create_venue_form():
-  form = VenueForm()
-  return render_template('forms/new_venue.html', form=form)
+  #form = VenueForm()
+  #return render_template('forms/new_venue.html', form=form)
 
-@app.route('/venues/create', methods=['POST'])
-def create_venue_submission():
+ @app.route('/venues/create', methods=['POST'])
+ def create_venue_submission():
   # TODO: insert form data as a new Venue record in the db, instead
   # TODO: modify data to be the data object returned from db insertion
 
@@ -341,7 +337,7 @@ def show_artist(artist_id):
 #  ----------------------------------------------------------------
 @app.route('/artists/<int:artist_id>/edit', methods=['GET'])
 def edit_artist(artist_id):
-  form = ArtistForm()
+  #form = ArtistForm()
   artist={
     "id": 4,
     "name": "Guns N Petals",
@@ -356,7 +352,7 @@ def edit_artist(artist_id):
     "image_link": "https://images.unsplash.com/photo-1549213783-8284d0336c4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80"
   }
   # TODO: populate form with fields from artist with ID <artist_id>
-  return render_template('forms/edit_artist.html', form=form, artist=artist)
+  #return render_template('forms/edit_artist.html', form=form, artist=artist)
 
 @app.route('/artists/<int:artist_id>/edit', methods=['POST'])
 def edit_artist_submission(artist_id):
@@ -367,7 +363,7 @@ def edit_artist_submission(artist_id):
 
 @app.route('/venues/<int:venue_id>/edit', methods=['GET'])
 def edit_venue(venue_id):
-  form = VenueForm()
+  #form = VenueForm()
   venue={
     "id": 1,
     "name": "The Musical Hop",
@@ -383,7 +379,7 @@ def edit_venue(venue_id):
     "image_link": "https://images.unsplash.com/photo-1543900694-133f37abaaa5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=60"
   }
   # TODO: populate form with values from venue with ID <venue_id>
-  return render_template('forms/edit_venue.html', form=form, venue=venue)
+  #return render_template('forms/edit_venue.html', form=form, venue=venue)
 
 @app.route('/venues/<int:venue_id>/edit', methods=['POST'])
 def edit_venue_submission(venue_id):
@@ -396,11 +392,11 @@ def edit_venue_submission(venue_id):
 
 @app.route('/artists/create', methods=['GET'])
 def create_artist_form():
-  form = ArtistForm()
-  return render_template('forms/new_artist.html', form=form)
+ # form = ArtistForm()
+ # return render_template('forms/new_artist.html', form=form)
 
-@app.route('/artists/create', methods=['POST'])
-def create_artist_submission():
+ @app.route('/artists/create', methods=['POST'])
+ def create_artist_submission():
   # called upon submitting the new artist listing form
   # TODO: insert form data as a new Venue record in the db, instead
   # TODO: modify data to be the data object returned from db insertion
@@ -460,11 +456,11 @@ def shows():
 @app.route('/shows/create')
 def create_shows():
   # renders form. do not touch.
-  form = ShowForm()
-  return render_template('forms/new_show.html', form=form)
+  #form = ShowForm()
+ # return render_template('forms/new_show.html', form=form)
 
-@app.route('/shows/create', methods=['POST'])
-def create_show_submission():
+ @app.route('/shows/create', methods=['POST'])
+ def create_show_submission():
   # called to create new shows in the db, upon submitting new show listing form
   # TODO: insert form data as a new Show record in the db, instead
 

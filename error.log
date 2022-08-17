@@ -4,3 +4,268 @@
 2022-08-14 21:43:23,498 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:484]
 2022-08-14 21:44:28,368 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:484]
 2022-08-14 22:39:10,982 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:484]
+2022-08-15 19:27:26,970 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:493]
+2022-08-15 19:38:36,600 ERROR: Exception on /artists/4 [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 336, in show_artist
+    return render_template('pages/show_artist.html', artist=data)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\templating.py", line 130, in _render
+    rv = template.render(context)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\templates\pages\show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\templates\layouts\main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\templates\pages\show_artist.html", line 68, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 52, in format_datetime
+    return babel.dates.format_datetime(date, format, locale="en")
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\babel\dates.py", line 758, in format_datetime
+    datetime = _ensure_datetime_tzinfo(_get_datetime(datetime), tzinfo)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\babel\dates.py", line 153, in _ensure_datetime_tzinfo
+    if datetime.tzinfo is None:
+AttributeError: 'SQLAlchemy' object has no attribute 'tzinfo'
+2022-08-15 19:49:23,797 ERROR: Exception on /shows/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 464, in create_shows
+    #   # called to create new shows in the db, upon submitting new show listing form
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 19:49:33,057 ERROR: Exception on /shows/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 464, in create_shows
+    #   # called to create new shows in the db, upon submitting new show listing form
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 19:49:38,967 ERROR: Exception on /venues/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 207, in create_venue_form
+    #   # TODO: insert form data as a new Venue record in the db, instead
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 19:49:51,023 ERROR: Exception on /artists/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 400, in create_artist_form
+    #   # called upon submitting the new artist listing form
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:02:04,772 ERROR: Exception on /venues/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 207, in create_venue_form
+    #   # TODO: insert form data as a new Venue record in the db, instead
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:02:18,054 ERROR: Exception on /artists/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 400, in create_artist_form
+    #   # called upon submitting the new artist listing form
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:04:32,253 ERROR: Exception on /venues/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 207, in create_venue_form
+    # TODO: insert form data as a new Venue record in the db, instead
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:05:16,867 ERROR: Exception on /venues/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 207, in create_venue_form
+    # TODO: insert form data as a new Venue record in the db, instead
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:05:28,128 ERROR: Exception on /venues/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 207, in create_venue_form
+    # TODO: insert form data as a new Venue record in the db, instead
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:05:46,231 ERROR: Exception on /shows/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 464, in create_shows
+    # called to create new shows in the db, upon submitting new show listing form
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:05:57,497 ERROR: Exception on /venues/create [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 207, in create_venue_form
+    # TODO: insert form data as a new Venue record in the db, instead
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\scaffold.py", line 49, in wrapper_func
+    self._check_setup_finished(f_name)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 722, in _check_setup_finished
+    raise AssertionError(
+AssertionError: The setup method 'route' can no longer be called on the application. It has already handled its first request, any changes will not be applied consistently.
+Make sure all imports, decorators, functions, etc. needed to set up the application are done before running it.
+2022-08-15 20:06:58,715 ERROR: Exception on /artists/4 [GET] [in C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py:1741]
+Traceback (most recent call last):
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 336, in show_artist
+    #  Update
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\templating.py", line 147, in render_template
+    return _render(app, template, context)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\flask\templating.py", line 130, in _render
+    rv = template.render(context)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\jinja2\environment.py", line 1301, in render
+    self.environment.handle_exception()
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\templates\pages\show_artist.html", line 1, in top-level template code
+    {% extends 'layouts/main.html' %}
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\templates\layouts\main.html", line 103, in top-level template code
+    {% block content %}{% endblock %}
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\templates\pages\show_artist.html", line 68, in block 'content'
+    <h6>{{ show.start_time|datetime('full') }}</h6>
+  File "C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py", line 52, in format_datetime
+    return babel.dates.format_datetime(date, format, locale="en")
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\babel\dates.py", line 758, in format_datetime
+    datetime = _ensure_datetime_tzinfo(_get_datetime(datetime), tzinfo)
+  File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\babel\dates.py", line 153, in _ensure_datetime_tzinfo
+    if datetime.tzinfo is None:
+AttributeError: 'SQLAlchemy' object has no attribute 'tzinfo'
