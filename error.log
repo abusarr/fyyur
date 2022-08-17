@@ -269,3 +269,9 @@ Traceback (most recent call last):
   File "C:\Users\Abu\AppData\Local\Programs\Python\Python310\lib\site-packages\babel\dates.py", line 153, in _ensure_datetime_tzinfo
     if datetime.tzinfo is None:
 AttributeError: 'SQLAlchemy' object has no attribute 'tzinfo'
+2022-08-17 19:00:55,571 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:491]
+2022-08-17 19:04:23,809 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:491]
+2022-08-17 19:07:09,288 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:491]
+2022-08-17 19:20:28,551 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:491]
+2022-08-17 19:21:04,439 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:491]
+2022-08-17 19:21:24,500 INFO: errors [in C:\Users\Abu\Desktop\projetfyyur\cd0046-SQL-and-Data-Modeling-for-the-Web\app.py:491]

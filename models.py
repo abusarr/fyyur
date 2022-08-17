@@ -19,8 +19,6 @@ import sys
 
 app = Flask(__name__)
 #moment = Moment(app)
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql://postgres:Abu195@localhost:5432/fyyur'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 

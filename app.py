@@ -7,7 +7,7 @@ import json
 import babel
 from flask import Flask, render_template, request, Response, flash, redirect, url_for , abort, jsonify
 
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 # from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 import logging
@@ -27,7 +27,7 @@ SQLALCHEMY_DATABASE_URI = "postgresql://postgres:Abu195@localhost:5432/fyyur"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
-# migrate = Migrate(app, db)
+migrate = Migrate(app, db)
 
 # moment = Moment(app)
 #app.config.from_object("config")
